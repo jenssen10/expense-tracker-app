@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Navigation -->
+<nav style="margin-bottom: 20px; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+    <a href="/" style="font-weight: bold; margin-right: 15px;">🏠 Home</a>
+    <a href="/summary" style="margin-right: 15px;">📊 Monthly Summary</a>
+    <a href="/charts">📈 Charts</a>
+</nav>
+
+<h2>Add New Expense</h2>
+
+<!-- Add Expense Form -->
+<form method="POST" action="/add" style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+    <div class="form-group">
+        <label for="amount">Amount ($):</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">-- Select Category --</option>
+            <option value="Food">🍔 Food</option>
+            <option value="Transport">🚗 Transport</option>
+            <option value="Entertainment">🎬 Entertainment</option>
+            <option value="Shopping">🛍️ Shopping</option>
+            <option value="Bills">💡 Bills</option>
+            <option value="Health">🏥 Health</option>
+            <option value="Other">📦 Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" placeholder="e.g., Lunch at cafe" required>
+    </div>
+
+    <button type="submit">➕ Add Expense</button>
+</form>
+
+<h2>Recent Expenses</h2>
+
+<!-- Expenses Table -->
+{% if expenses %}
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense[1] }}</td>
+            <td>${{ "%.2f"|format(expense[2]) }}</td>
+            <td>{{ expense[3] }}</td>
+            <td>{{ expense[4] }}</td>
+            <td>
+                <a href="/delete/{{ expense[0] }}" 
+                   onclick="return confirm('Are you sure you want to delete this expense?')"
+                   style="color: #dc3545;">
+                    🗑️ Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Calculate Total -->
+{% set total = expenses|sum(attribute=2) %}
+<div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 5px; text-align: right;">
+    <strong style="font-size: 1.2em;">Total: ${{ "%.2f"|format(total) }}</strong>
+</div>
+
+{% else %}
+<p style="text-align: center; color: #666; padding: 40px;">
+    No expenses yet. Add your first expense above! 💸
+</p>
+{% endif %}
+
+{% endblock %}
