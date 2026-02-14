@@ -1,149 +1,150 @@
-# expense-tracker-app
+# 💰 Expense Tracker App
 
-# Expense Tracker (Python + SQLite)
+A simple and elegant web application for tracking personal expenses, built with Flask and SQLite.
 
-A command-line expense tracker built with **Python** and **SQLite** that allows users to record, manage, and analyze personal expenses. The application supports full CRUD operations, category-based filtering, and monthly expense summaries using SQL queries.
+## ✨ Features
 
-This project demonstrates practical backend development skills, including database design, data persistence, and structured application logic.
+- **Add Expenses**: Quickly log expenses with amount, category, and description
+- **View All Expenses**: See all your expenses in a clean, organized table
+- **Monthly Summary**: Get detailed breakdowns of spending by month
+- **Visual Analytics**: Interactive charts showing spending patterns by category
+- **Category Breakdown**: See exactly where your money is going
+- **Responsive Design**: Works great on desktop and mobile devices
 
----
+## 🚀 Getting Started
 
-## 🚀 Features
+### Prerequisites
 
-* ➕ Add new expenses
-* 📄 View all recorded expenses
-* 🗂️ Filter expenses by category
-* ✏️ Edit existing expenses
-* 🗑️ Delete expenses
-* 📊 View monthly expense summaries
-* 💾 Persistent storage using SQLite
+- Python 3.7 or higher
+- pip (Python package installer)
 
----
+### Installation
 
-## 🛠️ Technologies Used
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/jenssen10/expense-tracker-app.git
+   cd expense-tracker-app
+   ```
 
-* **Python 3**
-* **SQLite (sqlite3 module)**
-* **SQL**
-* Command-Line Interface (CLI)
+2. **Install Flask**
+   ```bash
+   pip install flask
+   ```
 
----
+3. **Run the application**
+   ```bash
+   python app.py
+   ```
+
+4. **Open your browser**
+   
+   Navigate to: `http://127.0.0.1:5000`
 
 ## 📁 Project Structure
 
 ```
-expense_tracker/
-│
-├── expense_tracker.py   # Main application logic
-└── expenses.db          # SQLite database (auto-created)
+expense-tracker-app/
+├── app.py                 # Main Flask application
+├── expenses.db            # SQLite database (auto-created)
+├── templates/
+│   ├── base.html         # Base template with styling
+│   ├── index.html        # Home page (add/view expenses)
+│   ├── summary.html      # Monthly summary page
+│   └── charts.html       # Analytics and charts page
+└── README.md
 ```
 
----
+## 🎯 Usage
 
-## 🗄️ Database Schema
+### Adding an Expense
 
-The application uses a single SQLite table:
+1. Go to the home page
+2. Fill in the expense form:
+   - **Amount**: Enter the cost
+   - **Category**: Choose from predefined categories (Food, Transport, Entertainment, etc.)
+   - **Description**: Add a brief note
+3. Click "Add Expense"
 
-```sql
-CREATE TABLE expenses (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date TEXT,
-    amount REAL,
-    category TEXT,
-    description TEXT
-);
-```
+### Viewing Monthly Summary
 
----
+1. Click "Monthly Summary" in the navigation
+2. Select a month from the date picker
+3. View total spending and category breakdown
 
-## ▶️ How to Run the Application
+### Analyzing with Charts
 
-### 1️⃣ Clone the repository
+1. Click "Charts" in the navigation
+2. Select a month to visualize
+3. See:
+   - Doughnut chart showing expense distribution by category
+   - Bar chart showing total monthly spending
+   - Summary statistics (total, count, average)
 
-```bash
-git clone https://github.com/your-username/expense-tracker.git
-cd expense-tracker
-```
+## 🛠️ Tech Stack
 
-### 2️⃣ Run the program
+- **Backend**: Flask (Python web framework)
+- **Database**: SQLite
+- **Frontend**: HTML, CSS, JavaScript
+- **Charts**: Chart.js
+- **Template Engine**: Jinja2
 
-```bash
-python expense_tracker.py
-```
+## 📊 API Endpoints
 
-The database file (`expenses.db`) will be created automatically on first run.
+The app includes a RESTful API for programmatic access:
 
----
+- `GET /api/expenses` - Get all expenses
+- `POST /api/expenses` - Add new expense
+- `PUT /api/expenses/<id>` - Update expense
+- `DELETE /api/expenses/<id>` - Delete expense
+- `GET /api/summary/<month>` - Get monthly summary (format: YYYY-MM)
+- `GET /api/summary/<month>/by-category` - Get category breakdown
 
-## 📌 Usage Overview
+## 🎨 Categories
 
-When the program starts, you will see a menu with the following options:
+- 🍔 Food
+- 🚗 Transport
+- 🎬 Entertainment
+- 🛍️ Shopping
+- 💡 Bills
+- 🏥 Health
+- 📦 Other
 
-```
-1. Add Expense
-2. View Expenses
-3. Filter by Category
-4. Edit Expense
-5. Delete Expense
-6. Monthly Summary
-7. Exit
-```
+## 🔮 Future Enhancements
 
-Follow the prompts to interact with the expense tracker.
+- [ ] User authentication and multiple user support
+- [ ] Budget limits and alerts
+- [ ] Expense editing functionality
+- [ ] Export data to CSV/Excel
+- [ ] Receipt upload and storage
+- [ ] Recurring expenses
+- [ ] Multi-currency support
+- [ ] Mobile app
 
----
+## 🤝 Contributing
 
-## 📊 Monthly Summary
+Contributions are welcome! Feel free to:
 
-The monthly summary feature uses SQL date filtering:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-```
-YYYY-MM
-```
+## 📝 License
 
-Example:
-
-```
-2026-01
-```
-
----
-
-## 🎯 Learning Outcomes
-
-This project demonstrates:
-
-* CRUD operations with SQLite
-* SQL queries and aggregations
-* Data persistence
-* CLI application design
-* Separation of concerns in Python
-
----
-
-## 📄 Resume Description
-
-> Developed a Python-based expense tracker using SQLite with full CRUD functionality, category filtering, and monthly expense aggregation via SQL queries.
-
----
-
-## 🔮 Future Improvements
-
-* 📈 Data visualization with Matplotlib
-* 🖥️ GUI version using Tkinter
-* 🌐 Web version using Flask
-* 🔐 User authentication
-* 📤 Export reports to CSV or PDF
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
----
+This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Jenssen Honore**
-Aspiring Software Developer
+**Jenssen**
+- GitHub: [@jenssen10](https://github.com/jenssen10)
+
+## 🙏 Acknowledgments
+
+- Built with Flask
+- Charts powered by Chart.js
+- Icons from emoji unicode
+
+---
+
+⭐ If you find this project useful, please consider giving it a star on GitHub!
