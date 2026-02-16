@@ -297,4 +297,8 @@ if __name__ == '__main__':
     init_db()  # Initialize database on startup
     print("📊 Server running at http://127.0.0.1:5000")
     print("Press CTRL+C to stop")
-    app.run(debug=True, port=5000)
+    
+    # Use environment port for deployment, default to 5000 for local
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
